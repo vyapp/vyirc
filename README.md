@@ -3,7 +3,7 @@
 An irc plugin for vy.
 
 After some years using vy i just noticed that it was lacking an irc client plugin like emacs/vim.
-A other rationale behind consists of showing the power and flexibility of vy and untwisted.
+The strongest rationale behind consists of showing the power and flexibility of vy and untwisted.
 
 I think i have been succesful in that since vyirc is a quite functional irc client(which even has a plugin)
 and it is about 300 lines of code.
