@@ -111,17 +111,14 @@ In IRC mode.
 
 ### Switch to IRC mode
 
-After having executed the function IrcMode and opening an irc connection then it is possible
-to put the areavi instance tied to the connection in IRC mode by switching the focus to that
-areavi instance then switching to GAMMA mode and pressing:
+After having executed the irc network handle it should instantiate the class IrcMode. 
+The IrcMode class is responsible by implementing the functionalities of the plugin. 
+
+Whenever you join a new channel or instantiate a new connection it opens a new tab
+and its mode is IRC. You'll eventually switch to other modes, in order to put the AreaVi
+instance back to IRC mode just switch to GAMMA mode then press:
 
     <Key-i>
-
-When the areavi instance is in IRC mode then it is possible to use keycommands to send IRC commands
-by pressing:
-
-    <Control-e>
-
 
 ### Send IRC commands
 
