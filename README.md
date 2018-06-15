@@ -1,8 +1,16 @@
 # vyirc
 
 An irc plugin for vy.
-Vy implements vyirc that is an irc client plugin. It is such an amazing plugin that permits easily to connect
-to an irc network. It is possible to connect to more than one network, channels turn into tabs, irc servers turn into tabs as well.
+
+After some years using vy i just noticed that it was lacking an irc client plugin like emacs/vim.
+A other rationale behind consists of showing the power and flexibility of vy and untwisted.
+
+I think i have been succesful in that since vyirc is a quite functional irc client(which even has a plugin)
+and it is about 300 lines of code.
+
+The below screenshot shows vyirc in action, you can code and still talk on irc :P
+
+![screenshot-1](https://github.com/iogf/vy/wiki/screenshot-1.jpg)
 
 # Install
 
@@ -49,6 +57,10 @@ def irc_freenode(addr='irc.freenode.org', port=6667, user='vy vy vy :vyirc', nic
     IrcMode(addr, port, user, nick, irccmd, channels)
 
 ~~~
+
+**Note:** The vyirc plugin allows you to develop plugins for it. You can even implement irc bots on top of it.
+As an example of vyirc plugin see: https://github.com/vyapp/whocall
+But it would be necessary to know the workings of untwisted in order to come up with something functional.
 
 # Usage
 
