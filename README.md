@@ -21,7 +21,7 @@ The plugin was built on top of untwisted framework and its plugin quickirc:
 Install untwisted and quickirc with:
 
 ~~~
-pip install untwisted quickirc
+pip install untwisted==1.4.2 quickirc==1.1.1
 ~~~
 
 Then install vyirc:
@@ -211,6 +211,7 @@ Insert the message then press:
 In order to give back focus to the AreaVi instance just press:
 
     <Escape>
+
 
 
 
