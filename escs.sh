@@ -3,7 +3,7 @@
 cd ~/projects/
 git clone git@bitbucket.org:iogf/vyirc.git vyirc-code
 ##############################################################################
-# push.
+# push master.
 cd ~/projects/vyirc-code
 # clean up all .pyc files. 
 find . -name "*.pyc" -exec rm -f {} \;
@@ -12,6 +12,17 @@ git status
 git add *
 git commit -a
 git push -u origin master
+##############################################################################
+# push development.
+cd ~/projects/vyirc-code
+# clean up all .pyc files. 
+find . -name "*.pyc" -exec rm -f {} \;
+
+git status
+git add *
+git commit -a
+git push -u origin development
+
 ##############################################################################
 # install vyirc.
 cd ~/projects/vyirc-code
