@@ -25,12 +25,9 @@ exit
 cd ~/projects/vyirc-code
 python setup.py sdist register upload
 rm -fr dist
-
-
-
-
-
-
-
-
+##############################################################################
+# create the develop branch
+git branch -a
+git checkout -b development
+git push --set-upstream origin development
 
