@@ -10,7 +10,7 @@ and it is about 300 lines of code.
 
 The below screenshot shows vyirc in action, you can code and still talk on irc :P
 
-![screenshot-1](https://github.com/iogf/vy/wiki/screenshot-1.jpg)
+![screenshot-0](screenshot-0.jpg)
 
 # Install
 
@@ -211,5 +211,6 @@ Insert the message then press:
 In order to give back focus to the AreaVi instance just press:
 
     <Escape>
+
 
 
