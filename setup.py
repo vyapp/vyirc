@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name="vyirc",
-      version="1.0.0",
+      version="1.0.1",
       description="An irc plugin for vy.",
       py_modules=["vyirc"],
       author="Iury O. G. Figueiredo",
@@ -12,6 +12,7 @@ setup(name="vyirc",
       download_url='https://github.com/vyapp/vyirc/releases',
       keywords=['vy', 'irc', 'chat', 'vyirc'],
       classifiers=[])
+
 
 
 
