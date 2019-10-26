@@ -46,7 +46,7 @@ from untwisted.network import Spin, xmap, spawn, zmap, once
 from untwisted.iostd import Client, Stdin, Stdout, CONNECT, CONNECT_ERR, LOAD, CLOSE, lose
 from untwisted.splits import Terminator
 from untwisted.tkinter import extern
-from vyapp.exe import exec_quiet
+from vyapp.tools import exec_quiet
 from vyapp.plugins import ENV
 from vyapp.ask import Ask, Get
 from vyapp.app import root
