@@ -42,3 +42,10 @@ git branch -a
 git checkout -b development
 git push --set-upstream origin development
 
+##############################################################################
+# merge development into master.
+cd /home/tau/projects/vy-code/
+git checkout master
+git merge development
+git push
+git checkout development
