@@ -1,4 +1,4 @@
-untwisted==1.4.3
+untwisted==2.0.1
 quickirc==1.1.1
 
 
