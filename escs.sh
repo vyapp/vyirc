@@ -44,7 +44,7 @@ git push --set-upstream origin development
 
 ##############################################################################
 # merge development into master.
-cd /home/tau/projects/vy-code/
+cd /home/tau/projects/vyirc-code/
 git checkout master
 git merge development
 git push
