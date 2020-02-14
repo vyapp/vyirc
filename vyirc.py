@@ -45,7 +45,6 @@ from quickirc import Irc, Misc, send_cmd, send_msg
 from untwisted.network import Spin, xmap, spawn, zmap, once
 from untwisted.iostd import Client, Stdin, Stdout, CONNECT, CONNECT_ERR, LOAD, CLOSE, lose
 from untwisted.splits import Terminator
-from untwisted.tkinter import extern
 from vyapp.plugins import ENV
 from vyapp.ask import Ask, Get
 from vyapp.app import root
@@ -297,6 +296,4 @@ class IrcMode(object):
         area.append(H1 % (self.misc.nick, data))
         send_msg(self.con, target, data)
         wid.delete(0, 'end')
-
-extern(root)
 
