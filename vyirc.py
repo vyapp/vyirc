@@ -62,7 +62,7 @@ H9 = '>>> %s sets mode %s %s on %s <<<\n'
 H10 = '>>> Connection is down ! <<<\n'
 H11 = '>>> %s [%s@%s] has quit :%s <<<\n' 
 
-class ChannelController(object):
+class ChannelController:
     """
     Controls channel events and installs basic commands.
     """
@@ -104,11 +104,12 @@ class ChannelController(object):
         # Hook to send msgs.
         area.hook('vyirc', 'IRC', '<Key-i>', lambda event: Get(
         events={'<Escape>': lambda wid: True, 
+        '<Tab>' : self.c_nick,
         '<Return>': lambda wid: 
         self.irc.drop_msg(area, wid, chan)}))
 
         # It unbinds the above callback.
-        # In case the part command as sent by text
+        # In case the part command was sent by text
         # by the user. After part it should destroy the
         # area.
         once(irc.con, '*PART->%s' % chan, lambda con, *args: 
@@ -134,8 +135,10 @@ class ChannelController(object):
         self.chan, msg), '(VYIRC-KICK)')
 
     def e_nick(self, con, nicka, user, host, nickb):
-        try: self.peers.remove(nicka.lower())
-        except ValueError: return
+        try: 
+            self.peers.remove(nicka.lower())
+        except ValueError: 
+            return
 
         self.area.append(H5 % (nicka, nickb), '(VYIRC-NICK)')
         self.peers.add(nickb.lower())
@@ -155,7 +158,19 @@ class ChannelController(object):
         self.area.append(H11 % (nick, user, 
         host, msg), '(VYIRC-QUIT)')
 
-class IrcMode(object):
+    def c_nick(self, wid):
+        data = wid.get()
+        size = len(data)
+        data = data.rsplit(' ', 1)[-1]
+
+        for ind in self.peers:
+            if ind.startswith(data):
+                index = size - len(data)
+                wid.delete(index, size)
+                wid.insert(index, ind)
+            pass
+
+class IrcMode:
     """
     Controls basic irc events and installs basic commands.
     """
