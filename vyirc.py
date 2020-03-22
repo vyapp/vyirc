@@ -168,6 +168,7 @@ class ChannelController:
                 index = size - len(data)
                 wid.delete(index, size)
                 wid.insert(index, ind)
+                break
             pass
 
 class IrcMode:
