@@ -22,11 +22,6 @@ Mode: IRC
 Event: <Control-c>
 Description: Used to open a private chat channel with an user.
 
-Mode: IRC
-Event: <F1>
-Description: Used to pick up a different position in the AreaVi instance where to drop
-the text coming from the irc network.
-
 Commands
 ========
 
@@ -254,7 +249,7 @@ class IrcMode:
         area = root.note.create(name)
         area.add_mode('IRC')
         area.chmode('IRC')
-        area.install('vyirc', ('GAMMA', '<Key-i>', lambda event: area.chmode('IRC')),
+        area.install('vyirc', ('EXTRA', '<Key-i>', lambda event: area.chmode('IRC')),
         (-1, '<<Chmode-IRC>>', lambda event: area.mark_set('insert', 'end')),
         ('IRC', '<Control-e>', self.send_cmd),
         ('IRC', '<Control-c>',  self.open_private_channel))

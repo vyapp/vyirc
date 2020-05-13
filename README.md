@@ -116,7 +116,7 @@ The IrcMode class is responsible by implementing the functionalities of the plug
 
 Whenever you join a new channel or instantiate a new connection it opens a new tab
 and its mode is IRC. You'll eventually switch to other modes, in order to put the AreaVi
-instance back to IRC mode just switch to GAMMA mode then press:
+instance back to IRC mode just switch to EXTRA mode then press:
 
     <Key-i>
 
