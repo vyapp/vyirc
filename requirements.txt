@@ -1,5 +1,5 @@
-untwisted==2.0.1
-quickirc==1.1.1
+untwisted==3.0.0
+quickirc==1.2.0
 
 
 

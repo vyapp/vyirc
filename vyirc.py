@@ -37,8 +37,11 @@ channels = A list of channels to join in.
 """
 
 from quickirc import Irc, Misc, send_cmd, send_msg
-from untwisted.network import Spin, xmap, spawn, zmap, once
-from untwisted.iostd import Client, Stdin, Stdout, CONNECT, CONNECT_ERR, LOAD, CLOSE, lose
+from untwisted.network import Spin
+from untwisted.client import Client, lose
+from untwisted.sock_writer  import SockWriter
+from untwisted.sock_reader import SockReader
+from untwisted.event import LOAD, CLOSE, CONNECT_ERR, CONNECT
 from untwisted.splits import Terminator
 from vyapp.plugins import ENV
 from vyapp.ask import Ask, Get
@@ -84,10 +87,10 @@ class ChannelController:
                 zmap(irc.con, key, value)
 
         for key, value in events:
-            xmap(irc.con, key, value)
+            irc.con.add_map(key, value)
 
-        once(irc.con, '*PART->%s' % chan, unset)
-        xmap(irc.con, '*KICK->%s' % chan, unset)
+        irc.con.once('*PART->%s' % chan, unset)
+        irc.con.add_map('*KICK->%s' % chan, unset)
 
         area.bind('<Destroy>', lambda event: 
         unset(irc.con), add=True)
@@ -107,7 +110,7 @@ class ChannelController:
         # In case the part command was sent by text
         # by the user. After part it should destroy the
         # area.
-        once(irc.con, '*PART->%s' % chan, lambda con, *args: 
+        irc.con.once('*PART->%s' % chan, lambda con, *args: 
         area.unbind('<Destroy>'))
 
     def e_privmsg(self, con, nick, user, host, msg):
@@ -188,8 +191,8 @@ class IrcMode:
         con.connect_ex((addr, int(port)))
         Client(con)
 
-        xmap(con, CONNECT, self.on_connect)
-        xmap(con, CONNECT_ERR, self.e_connect_err)
+        con.add_map(CONNECT, self.on_connect)
+        con.add_map(CONNECT_ERR, self.e_connect_err)
         self.misc     = None
         self.addr     = addr
         self.port     = port
@@ -212,25 +215,25 @@ class IrcMode:
         area.bind('<Destroy>', lambda event: 
         send_cmd(con, 'QUIT :vy rules!'), add=True)
 
-        Stdin(con)
-        Stdout(con)
+        SockWriter(con)
+        SockReader(con)
         Terminator(con)
         Irc(con)
         self.misc = Misc(con)
 
-        xmap(con, CLOSE, lambda con, err: lose(con))
-        xmap(con, '*JOIN', self.create_channel)
+        con.add_map(CLOSE, lambda con, err: lose(con))
+        con.add_map('*JOIN', self.create_channel)
 
-        xmap(con, Terminator.FOUND, 
+        con.add_map(Terminator.FOUND, 
         lambda con, data: area.append('%s\n' % data.decode(self.encoding)))
 
-        xmap(con, 'PMSG', self.e_pmsg)
-        xmap(con, '376', lambda con, *args: 
+        con.add_map('PMSG', self.e_pmsg)
+        con.add_map('376', lambda con, *args: 
         send_cmd(con, self.irccmd))
 
-        xmap(con, '376', self.auto_join)
+        con.add_map('376', self.auto_join)
 
-        xmap(con, 'PING', lambda con, prefix, servaddr: 
+        con.add_map('PING', lambda con, prefix, servaddr: 
         send_cmd(con, 'PONG :%s' % servaddr))
 
         send_cmd(con, 'NICK %s' % self.nick)
