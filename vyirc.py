@@ -37,7 +37,7 @@ channels = A list of channels to join in.
 """
 
 from quickirc import Irc, Misc, send_cmd, send_msg
-from untwisted.network import Spin
+from untwisted.network import SuperSocket
 from untwisted.client import Client, lose
 from untwisted.sock_writer  import SockWriter
 from untwisted.sock_reader import SockReader
@@ -186,7 +186,7 @@ class IrcMode:
     '(VYIRC-CLOSE)': {'foreground': '#A7F2E9'}}
     
     def __init__(self, addr, port, user, nick, irccmd, channels=[], encoding='utf8'):
-        con      = Spin()
+        con      = SuperSocket()
         self.con = con
         con.connect_ex((addr, int(port)))
         Client(con)
