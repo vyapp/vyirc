@@ -14,14 +14,10 @@ The below screenshot shows vyirc in action, you can code and still talk on irc :
 
 # Install
 
-The plugin was built on top of untwisted framework and its plugin quickirc:
-
-**See:** https://github.com/untwisted/untwisted and https://github.com/untwisted/quickirc
-
-Install untwisted and quickirc with:
+Install requirements with.
 
 ~~~
-pip install untwisted==1.4.2 quickirc==1.1.1
+pip install -r requirements.txt
 ~~~
 
 Then install vyirc:
