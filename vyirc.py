@@ -12,7 +12,7 @@ Namespace: vyirc
 
 Mode: GAMMA
 Event: <Key-i>
-Description: Get in IRC mode, only possible for areavi instances that are tied to IRC connecitons.
+Description: Get in IRC mode, only possible for areavi instances that are tied to IRC connections.
 
 Mode: IRC
 Event: <Control-e>
@@ -83,8 +83,8 @@ class ChannelController:
         (CLOSE, self.e_close))
 
         def unset(con, *args):
-            for key, value in events:
-                zmap(irc.con, key, value)
+            for event, handle in events:
+                irc.con.del_map(event, handle)
 
         for key, value in events:
             irc.con.add_map(key, value)
@@ -261,8 +261,8 @@ class IrcMode:
         return area
 
     def open_private_channel(self, event):
-        data = Ask().data
-        if data: self.create_private_channel(data)
+        data = Ask()
+        self.create_private_channel(data)
 
     def create_private_channel(self, nick):
         """
