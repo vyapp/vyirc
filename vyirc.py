@@ -261,8 +261,8 @@ class IrcMode:
         return area
 
     def open_private_channel(self, event):
-        data = Ask()
-        self.create_private_channel(data)
+        ask = Ask()
+        self.create_private_channel(ask.data)
 
     def create_private_channel(self, nick):
         """
