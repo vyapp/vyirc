@@ -257,12 +257,13 @@ class IrcMode:
         ('IRC', '<Control-e>', self.send_cmd),
         ('IRC', '<Control-c>',  self.open_private_channel))
 
-        area.tags_config(self.TAGCONF)
+        for indi, indj in self.TAGCONF.items():
+            area.tag_config(indi, **indj)
         return area
 
     def open_private_channel(self, event):
-        ask = Ask()
-        self.create_private_channel(ask.data)
+        data = Ask()
+        self.create_private_channel(data)
 
     def create_private_channel(self, nick):
         """
